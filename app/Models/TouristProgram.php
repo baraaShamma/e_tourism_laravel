@@ -14,7 +14,7 @@ class TouristProgram extends Model {
         'description'
     ];
     public function Trip(){
-        return $this->belongsTo(TouristTrip::class,'tourist_program_id','id');
+        return $this->hasMany(TouristTrip::class,'tourist_program_id','id');
     }
 
 }

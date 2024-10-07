@@ -26,7 +26,7 @@ class TouristTrip extends Model
 
     public function registrations()
     {
-        return $this->hasMany(TripRegistration::class);
+        return $this->hasMany(TripRegistration::class,'trip_id');
     }
 }
 

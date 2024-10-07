@@ -5,11 +5,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class TripRegistration extends Model
 {
-    protected $fillable = ['tourist_trip_id', 'user_id'];
+    protected $fillable = ['trip_id', 'user_id'];
 
     public function touristTrip()
     {
-        return $this->belongsTo(TouristTrip::class);
+        return $this->belongsTo(TouristTrip::class,);
     }
 
     public function user()

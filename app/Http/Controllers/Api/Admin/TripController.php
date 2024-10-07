@@ -48,8 +48,11 @@ class TripController extends BaseController
         $result = $this->tripService->registerForTrip($tripId, auth()->id());
 
         if (!$result) {
-            return $this->sendError('The trip is full.');
-        }
+            return response()->json([
+                'state' => false,
+                'message' => 'Some error occurred'
+            ], 400);
+                    }
 
         return $this->sendResponse($result, 'Successfully registered for the trip.');
     }

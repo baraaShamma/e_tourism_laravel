@@ -2,7 +2,6 @@
 namespace App\Services;
 
 use App\Models\TouristTrip;
-use Illuminate\Support\Facades\Log;
 
 class TripService
 {
@@ -28,7 +27,7 @@ class TripService
     {
         $trip = TouristTrip::find($tripId);
 
-        if ($trip->registrations->count() >= $trip->max_participants) {
+        if ($trip->registrations->count() >= $trip->max_capacity) {
             return false; // No more slots available
         }
 

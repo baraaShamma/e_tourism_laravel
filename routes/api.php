@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Admin\TouristProgramController;
 use App\Http\Controllers\Api\Admin\Bus\BusController;
 use App\Http\Controllers\Api\Admin\Bus\BusDriverController;
 use App\Http\Controllers\Api\Admin\TripController;
+use App\Http\Controllers\Api\TripSearchController;
 
 Route::controller(RegisterController::class)->group(function(){
     Route::post('register', 'register');
@@ -54,4 +55,8 @@ Route::middleware('auth:api')->group(function () {
 
     // حجز الرحلة للمستخدمين من نوع tourist فقط
     Route::post('trips/{tripId}/register', [TripController::class, 'register'])->middleware('tourist');
+});
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('trips/search', [TripSearchController::class, 'search']);
 });
