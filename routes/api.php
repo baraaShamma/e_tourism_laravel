@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Admin\TouristProgramController;
 use App\Http\Controllers\Api\Admin\Bus\BusController;
 use App\Http\Controllers\Api\Admin\Bus\BusDriverController;
 use App\Http\Controllers\Api\Admin\TripController;
+use App\Http\Controllers\Api\Admin\AdController;
 use App\Http\Controllers\Api\TripSearchController;
 
 Route::controller(RegisterController::class)->group(function(){
@@ -46,6 +47,9 @@ Route::post('admin/buses/assign-driver', [BusDriverController::class, 'assignDri
 
 Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::post('admin/trips', [TripController::class, 'store']); // إضافة رحلة جديدة
+    Route::post('admin/ads', [AdController::class, 'store']); // إضافة إعلان
+Route::delete('admin/ads/{id}', [AdController::class, 'destroy']); // حذف إعلان
+
 });
 
 // مسارات لعرض الرحلات وحجزها
@@ -59,4 +63,6 @@ Route::middleware('auth:api')->group(function () {
 
 Route::middleware('auth:api')->group(function () {
     Route::get('trips/search', [TripSearchController::class, 'search']);
+    Route::get('ads', [AdController::class, 'index']);
+
 });

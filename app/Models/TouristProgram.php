@@ -11,10 +11,16 @@ class TouristProgram extends Model {
     protected $fillable = [
         'type',
         'name',
-        'description'
+        'description',
+        'image'
     ];
     public function Trip(){
         return $this->hasMany(TouristTrip::class,'tourist_program_id','id');
     }
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? asset('storage/tourist_programs/' . $this->image) : null;
+    }
+
 
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('type', 100); // نوع البرنامج السياحي (مثل جولة سياحية، مغامرة، ...)
             $table->string('name', 150); // اسم البرنامج السياحي
             $table->text('description')->nullable(); // وصف مفصل للبرنامج السياحي
+            $table->string('image')->nullable();
             $table->timestamps(); // الحقول الافتراضية created_at و updated_at
         });
     }

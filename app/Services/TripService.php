@@ -7,7 +7,6 @@ class TripService
 {
     public function createTrip($data)
     {
-        // Log::info('Creating trip with data:', $data);
 
         return TouristTrip::create($data);
     }
@@ -15,8 +14,9 @@ class TripService
 
     public function getAllTrips()
     {
-        return TouristTrip::all();
+        return TouristTrip::with('touristProgram')->get();
     }
+    
 
     public function getTripsBetweenDates($startDate, $endDate)
     {

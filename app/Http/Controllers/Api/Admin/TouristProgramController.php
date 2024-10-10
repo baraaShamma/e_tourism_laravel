@@ -13,16 +13,23 @@ class TouristProgramController extends BaseController {
         $this->middleware('auth:sanctum'); // التحقق من التوكن
     }
 
-    public function store(TouristProgramValidator $request) {
-        // التحقق من أن المستخدم Admin
-        if (auth()->user()->type_user !== 'admin') {
-            return $this->sendResponse(null, "Unauthorized", 403);
+    public function store(TouristProgramValidator $request) 
+        {
+            if (auth()->user()->type_user !== 'admin') {
+                return $this->sendResponse(null, "Unauthorized", 403);
+            }
+        
+            $data = $request->all();
+        
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('tourist_programs', 'public');
+                $data['image'] = $imagePath;
+            }
+        
+            $program = $this->touristProgramService->createProgram($data);
+        
+            return $this->sendResponse($program, "Tourist Program Created");
         }
-
-        // استخدم $request->all() لجلب البيانات
-        $program = $this->touristProgramService->createProgram($request->all());
-        return $this->sendResponse($program, "Tourist Program Created");
-    }
 
     public function update(TouristProgramValidator $request, TouristProgram $program) {
         // التحقق من أن المستخدم Admin
