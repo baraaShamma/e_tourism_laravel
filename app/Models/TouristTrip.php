@@ -13,7 +13,11 @@ class TouristTrip extends Model
     {
         return $this->belongsTo(TouristProgram::class,"tourist_program_id","id");
     }
-
+    public function tripImages()
+    {
+        return $this->hasMany(TouristTripImage::class);
+    }
+    
     public function bus()
     {
         return $this->belongsTo(TouristBus::class);

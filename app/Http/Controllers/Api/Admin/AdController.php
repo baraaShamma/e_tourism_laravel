@@ -40,7 +40,7 @@ class AdController extends BaseController
 
         // نعيد كل إعلان مع رابط الصورة
         $adsWithImages = $ads->map(function ($ad) {
-            $ad->image_url = url('storage/ads/' . $ad->image);
+            $ad->image_url = url('storage/' . $ad->image);
             return $ad;
         });
 

@@ -16,19 +16,20 @@ class TripSearchController extends BaseController
 
     public function search(SearchTripRequest $request)
     {
+        // استخدام get مباشرة للحصول على القيمة من البيانات المرسلة عبر POST
         $name = $request->request()->get('name');
-
-  
+      
+        // تنفيذ عملية البحث باستخدام الاسم
         $trips = $this->tripSearchService->searchByProgramName($name);
-        // return [$trips];
-        if (!$trips) {
+    
+        if ($trips->isEmpty()) {
             return response()->json([
                 'state' => false,
                 'message' => 'No trips found for the specified program name.'
             ], 400);
         }
-
+    
         return $this->sendResponse($trips, "Trips found successfully.");
-
     }
+    
 }

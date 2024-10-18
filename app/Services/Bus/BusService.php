@@ -21,4 +21,9 @@ class BusService
     {
         return $bus->delete();
     }
+    public function getAllBuss()
+    {
+        return TouristBus::all();
+    }
+
 }

@@ -19,12 +19,18 @@ class UserServices{
         if (Auth::attempt($credentials)) {
             // المستخدم تم التحقق منه
             $user = Auth::user();
-
-            // إنشاء token باستخدام Sanctum
-            return $user->createToken('authToken')->plainTextToken;
+    
+            $token = $user->createToken('authToken')->plainTextToken;
+    
+            // إرجاع التوكن ونوع المستخدم
+            return [
+                'token' => $token,
+                'type_user' => $user->type_user,
+            ];
         }
-
+    
         return null;
     }
+    
 
 }

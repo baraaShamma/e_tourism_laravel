@@ -30,7 +30,7 @@ class AuthController extends BaseController
         $token = $this->userService->loginUser($request->only('email', 'password'));
 
         if ($token) {
-            return $this->sendResponse(['token' => $token], "Login Successful");
+            return $this->sendResponse([$token], "Login Successful");
         }
 
         return $this->sendResponse(['error' => 'Invalid Credentials'], "Unauthorized", 401);

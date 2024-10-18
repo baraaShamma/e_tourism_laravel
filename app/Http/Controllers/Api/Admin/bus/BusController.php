@@ -16,6 +16,11 @@ class BusController extends BaseController
     {
         $this->busService = $busService;
     }
+    public function index()
+    {
+        $buss = $this->busService->getAllBuss();
+        return $this->sendResponse($buss, 'All buss retrieved successfully.');
+    }
 
     public function store(StoreBusRequest $request)
     {

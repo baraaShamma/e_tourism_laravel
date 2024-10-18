@@ -26,7 +26,7 @@ abstract class BaseRequestFormApi
                 $this->status = false;
                 $this->errors = $validator->errors()->toArray();
                 if ($forceDie) {
-                    // يمكنك تنفيذ منطق إضافي هنا إذا كنت تريد إيقاف التنفيذ عند وجود خطأ
+                 
                 }
             } else {
                 // Save validated data if validation passes
