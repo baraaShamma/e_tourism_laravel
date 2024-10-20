@@ -21,8 +21,6 @@ class AdController extends BaseController
     
         return $this->sendResponse($ad, 'Ad created successfully');
     }
-    
-
     public function destroy($id)
     {
         $deleted = $this->adService->deleteAd($id);
@@ -33,7 +31,6 @@ class AdController extends BaseController
 
         return response()->json(['message' => 'Ad not found'], 404);
     }
-
     public function index()
     {
         $ads = $this->adService->getAllAds();
@@ -43,7 +40,6 @@ class AdController extends BaseController
             $ad->image_url = url('storage/' . $ad->image);
             return $ad;
         });
-
         return response()->json(['data' => $adsWithImages], 200);
     }
 }

@@ -12,7 +12,6 @@ class StoreAdRequest extends BaseRequestFormApi
         ];
     }
     
-    
      public function authorized(): bool
     {
         return true;
